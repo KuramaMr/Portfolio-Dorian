@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import ExplodingLink from './ExplodingLink';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -50,13 +51,13 @@ const Header = () => {
         transition={{ duration: 0.3 }}
       >
         <Link href="/">
-          <motion.span
+          <motion.h2
             className="text-2xl font-bold text-white cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             Dorian Maquet
-          </motion.span>
+          </motion.h2>
         </Link>
         <nav>
           <ul className="flex space-x-6">
@@ -66,13 +67,12 @@ const Header = () => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <a
-                  href={`#${item.toLowerCase()}`}
-                  onClick={(e) => handleNavigation(e, item)}
+                <ExplodingLink
+                  href={`#${item.toLowerCase().replace(' ', '-')}`}
                   className="text-white hover:text-blue-400 transition-colors duration-300 cursor-pointer"
                 >
                   {item}
-                </a>
+                </ExplodingLink>
               </motion.li>
             ))}
           </ul>

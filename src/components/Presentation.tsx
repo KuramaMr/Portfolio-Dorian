@@ -61,8 +61,11 @@ const Presentation = () => {
 
           <div className="md:w-1/2 text-center md:text-left">
             <motion.h2 
-              className="text-4xl font-bold mb-4 text-blue-400"
+              className="text-4xl font-bold mb-4 text-white-400"
               variants={itemVariants}
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
             >
               À propos de moi
             </motion.h2>
