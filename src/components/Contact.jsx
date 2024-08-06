@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -34,6 +34,9 @@ const Contact = () => {
       setNotification({ show: true, message: 'Une erreur est survenue lors de l\'envoi du message.', type: 'error' });
     } finally {
       setIsSubmitting(false);
+      setTimeout(() => {
+        setNotification({ show: false, message: '', type: '' });
+      }, 5000);
     }
   };
 
@@ -86,46 +89,53 @@ const Contact = () => {
             ></textarea>
           </div>
           <div>
-            <motion.button
-              type="submit"
-              className="w-full bg-blue-600 text-white py-3 px-6 rounded-full hover:bg-blue-700 transition-colors duration-300 relative overflow-hidden"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <motion.span
-                initial={{ y: 0 }}
-                animate={isSubmitting ? { y: -30 } : { y: 0 }}
-                transition={{ duration: 0.2 }}
+          <motion.button
+                type="submit"
+                className="w-full bg-blue-600 text-white py-3 px-6 rounded-full hover:bg-blue-700 transition-colors duration-300 relative overflow-hidden"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                disabled={isSubmitting}
               >
-                Envoyer
-              </motion.span>
-              <motion.span
-                className="absolute inset-0 flex items-center justify-center"
-                initial={{ y: 30 }}
-                animate={isSubmitting ? { y: 0 } : { y: 30 }}
-                transition={{ duration: 0.2 }}
-              >
-                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-              </motion.span>
-            </motion.button>
+                <motion.span
+                  initial={{ y: 0 }}
+                  animate={isSubmitting ? { y: -30 } : { y: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  Envoyer
+                </motion.span>
+                {isSubmitting && (
+                  <motion.span
+                    className="absolute inset-0 flex items-center justify-center"
+                    initial={{ y: 30 }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      className="w-6 h-6 border-t-2 border-white rounded-full"
+                    />
+                  </motion.span>
+                )}
+              </motion.button>
           </div>
         </form>
       </div>
-      {notification.show && (
-        <motion.div
-          className={`fixed bottom-5 right-5 p-4 rounded-lg shadow-lg ${
-            notification.type === 'success' ? 'bg-green-500' : 'bg-red-500'
-          } text-white`}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 50 }}
-        >
-          {notification.message}
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {notification.show && (
+          <motion.div
+            className={`fixed bottom-5 right-5 p-4 rounded-lg shadow-lg ${
+              notification.type === 'success' ? 'bg-green-500' : 'bg-red-500'
+            } text-white`}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            transition={{ duration: 0.3 }}
+          >
+            {notification.message}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
