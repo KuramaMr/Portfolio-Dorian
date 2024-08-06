@@ -90,34 +90,35 @@ const Contact = () => {
           </div>
           <div>
           <motion.button
-                type="submit"
-                className="w-full bg-blue-600 text-white py-3 px-6 rounded-full hover:bg-blue-700 transition-colors duration-300 relative overflow-hidden"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                disabled={isSubmitting}
+              type="submit"
+              className="w-full bg-blue-600 text-white py-3 px-6 rounded-full hover:bg-blue-700 transition-colors duration-300 relative overflow-hidden"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              disabled={isSubmitting}
+            >
+              <motion.span
+                className="absolute inset-0 flex items-center justify-center"
+                initial={{ opacity: 1 }}
+                animate={{ opacity: isSubmitting ? 0 : 1 }}
+                transition={{ duration: 0.2 }}
               >
+                Envoyer
+              </motion.span>
+              {isSubmitting && (
                 <motion.span
-                  initial={{ y: 0 }}
-                  animate={isSubmitting ? { y: -30 } : { y: 0 }}
+                  className="absolute inset-0 flex items-center justify-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
                   transition={{ duration: 0.2 }}
                 >
-                  Envoyer
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    className="w-6 h-6 border-t-2 border-white rounded-full"
+                  />
                 </motion.span>
-                {isSubmitting && (
-                  <motion.span
-                    className="absolute inset-0 flex items-center justify-center"
-                    initial={{ y: 30 }}
-                    animate={{ y: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                      className="w-6 h-6 border-t-2 border-white rounded-full"
-                    />
-                  </motion.span>
-                )}
-              </motion.button>
+              )}
+            </motion.button>
           </div>
         </form>
       </div>
