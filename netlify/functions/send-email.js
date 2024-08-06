@@ -21,7 +21,7 @@ exports.handler = async (event) => {
   try {
     await transporter.sendMail({
       from: '"Votre Portfolio" <votre-email@example.com>',
-      to: "votre-email@example.com", // L'adresse où vous voulez recevoir les emails
+      to: "takenzmr@gmail.com", // L'adresse où vous voulez recevoir les emails
       subject: `Nouveau message de ${name}`,
       text: `Nom: ${name}\nEmail: ${email}\nMessage: ${message}`,
       html: `<p><strong>Nom:</strong> ${name}</p>
