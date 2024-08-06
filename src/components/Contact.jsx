@@ -13,29 +13,6 @@ const Contact = () => {
     setFormData(prevState => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('https://portfolio-backend-dorian.onrender.com/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        alert('Message envoyé avec succès !');
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        alert('Erreur lors de l\'envoi du message. Veuillez réessayer.');
-      }
-    } catch (error) {
-      console.error('Erreur:', error);
-      alert('Une erreur est survenue. Veuillez réessayer plus tard.');
-    }
-  };
-
   return (
     <section id="contact" className="py-32 bg-gray-900">
       <div className="container mx-auto px-4 max-w-3xl">
@@ -47,41 +24,42 @@ const Contact = () => {
         >
           Contactez-moi
         </motion.h2>
-        <form onSubmit={handleSubmit} className="space-y-8">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Nom</label>
+        <form name="contact" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="contact" />
+          <div className="mb-6">
+            <label htmlFor="name" className="block text-white mb-2">Nom</label>
             <input
               type="text"
               id="name"
               name="name"
               value={formData.name}
               onChange={handleChange}
+              className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:border-blue-500"
               required
-              className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email</label>
+          <div className="mb-6">
+            <label htmlFor="email" className="block text-white mb-2">Email</label>
             <input
               type="email"
               id="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
+              className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:border-blue-500"
               required
-              className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          <div>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Message</label>
+          <div className="mb-6">
+            <label htmlFor="message" className="block text-white mb-2">Message</label>
             <textarea
               id="message"
               name="message"
               value={formData.message}
               onChange={handleChange}
+              rows="5"
+              className="w-full bg-gray-800 text-white border border-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:border-blue-500"
               required
-              rows={6}
-              className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             ></textarea>
           </div>
           <div>
