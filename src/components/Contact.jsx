@@ -13,6 +13,25 @@ const Contact = () => {
     setFormData(prevState => ({ ...prevState, [name]: value }));
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/.netlify/functions/send-email', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        alert('Message envoyé avec succès !');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        throw new Error('Erreur lors de l\'envoi du message');
+      }
+    } catch (error) {
+      console.error('Erreur:', error);
+      alert('Une erreur est survenue lors de l\'envoi du message.');
+    }
+  };
+
   return (
     <section id="contact" className="py-32 bg-gray-900">
       <div className="container mx-auto px-4 max-w-3xl">
@@ -24,11 +43,7 @@ const Contact = () => {
         >
           Contactez-moi
         </motion.h2>
-        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="contact" />
-          <div hidden>
-            <input name="bot-field" />
-          </div>
+        <form onSubmit={handleSubmit}>
           <div className="mb-6">
             <label htmlFor="name" className="block text-white mb-2">Nom</label>
             <input
