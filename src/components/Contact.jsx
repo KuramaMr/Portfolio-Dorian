@@ -13,6 +13,18 @@ const Contact = () => {
     setFormData(prevState => ({ ...prevState, [name]: value }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(new FormData(form)).toString(),
+    })
+      .then(() => alert("Message envoyé avec succès!"))
+      .catch((error) => alert(error));
+  };
+
   return (
     <section id="contact" className="py-32 bg-gray-900">
       <div className="container mx-auto px-4 max-w-3xl">
@@ -24,9 +36,13 @@ const Contact = () => {
         >
           Contactez-moi
         </motion.h2>
-        <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+        <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleSubmit}>
           <input type="hidden" name="form-name" value="contact" />
-          <input type="hidden" name="bot-field" />
+          <p hidden>
+            <label>
+              Don't fill this out: <input name="bot-field" />
+            </label>
+          </p>
           <div className="mb-6">
             <label htmlFor="name" className="block text-white mb-2">Nom</label>
             <input
