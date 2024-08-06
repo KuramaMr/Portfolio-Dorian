@@ -36,10 +36,10 @@ const skills = [
 
 const Skills = () => {
   return (
-    <section id="competences" className="min-h-screen flex items-center justify-center bg-gray-900">
+    <section id="compétences" className="min-h-screen flex items-center justify-center bg-gray-900">
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-5xl font-bold mb-16 text-center text-blue-400"
+          className="text-5xl font-bold mb-16 text-center text-white-400"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
