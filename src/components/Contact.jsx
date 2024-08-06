@@ -24,7 +24,7 @@ const Contact = () => {
         >
           Contactez-moi
         </motion.h2>
-        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html">
           <input type="hidden" name="form-name" value="contact" />
           <p hidden>
             <label>
