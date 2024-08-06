@@ -24,13 +24,11 @@ const Contact = () => {
         >
           Contactez-moi
         </motion.h2>
-        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html">
+        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="contact" />
-          <p hidden>
-            <label>
-              Ne pas remplir: <input name="bot-field" />
-            </label>
-          </p>
+          <div hidden>
+            <input name="bot-field" />
+          </div>
           <div className="mb-6">
             <label htmlFor="name" className="block text-white mb-2">Nom</label>
             <input
