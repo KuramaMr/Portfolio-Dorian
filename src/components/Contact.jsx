@@ -91,8 +91,8 @@ const Contact = () => {
           <div>
           <motion.button
               type="submit"
-              className="w-full bg-blue-600 text-white py-3 px-6 rounded-full hover:bg-blue-700 transition-colors duration-300 relative overflow-hidden"
-              whileHover={{ scale: 1.05 }}
+              className="w-full bg-blue-600 text-white py-4 px-8 rounded-full hover:bg-blue-700 transition-all duration-300 relative overflow-hidden shadow-lg text-lg font-semibold"
+              whileHover={{ scale: 1.05, boxShadow: "0 0 15px rgba(59, 130, 246, 0.5)" }}
               whileTap={{ scale: 0.95 }}
               disabled={isSubmitting}
             >
@@ -114,7 +114,7 @@ const Contact = () => {
                   <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    className="w-6 h-6 border-t-2 border-white rounded-full"
+                    className="w-8 h-8 border-t-3 border-white rounded-full"
                   />
                 </motion.span>
               )}
