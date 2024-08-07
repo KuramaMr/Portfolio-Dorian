@@ -3,37 +3,41 @@ import { motion, useAnimation } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import ExplodingLink from './ExplodingLink';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const controls = useAnimation();
   const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      if (scrollY > 50) {
-        setIsScrolled(true);
-        controls.start({ backgroundColor: 'rgba(17, 24, 39, 0.8)', backdropFilter: 'blur(5px)' });
-      } else {
-        setIsScrolled(false);
-        controls.start({ backgroundColor: 'rgba(17, 24, 39, 0)', backdropFilter: 'blur(0px)' });
-      }
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [controls]);
+  }, []);
 
-  const handleNavigation = (e, target) => {
-    e.preventDefault();
-    const elementId = target.toLowerCase().replace(/\s+/g, '-').replace(/[éè]/g, 'e');
-    const element = document.getElementById(elementId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      router.push(`/${elementId}`);
-    }
+  useEffect(() => {
+    controls.start({
+      y: isScrolled ? 0 : 10,
+      opacity: isScrolled ? 1 : 0.7,
+    });
+  }, [isScrolled, controls]);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleLinkClick = (e) => {
+    closeMobileMenu();
   };
 
   return (
@@ -59,7 +63,7 @@ const Header = () => {
             Dorian Maquet
           </motion.h2>
         </Link>
-        <nav>
+        <nav className="hidden md:block">
           <ul className="flex space-x-6">
             {['Accueil', 'À Propos', 'Compétences', 'Projets', 'Contact'].map((item) => (
               <motion.li
@@ -68,8 +72,9 @@ const Header = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <ExplodingLink
-                  href={`#${item.toLowerCase().replace(' ', '-')}`}
+                  href={`#${item.toLowerCase().replace(/\s+/g, '-').replace(/[éè]/g, 'e')}`}
                   className="text-white hover:text-blue-400 transition-colors duration-300 cursor-pointer"
+                  onClick={handleLinkClick}
                 >
                   {item}
                 </ExplodingLink>
@@ -77,7 +82,40 @@ const Header = () => {
             ))}
           </ul>
         </nav>
+        <div className="md:hidden">
+          <button onClick={toggleMobileMenu} className="text-white">
+            {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </button>
+        </div>
       </motion.div>
+      {isMobileMenuOpen && (
+        <motion.div
+          className="md:hidden bg-gray-900 shadow-lg"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3 }}
+        >
+          <ul className="py-4">
+            {['Accueil', 'À Propos', 'Compétences', 'Projets', 'Contact'].map((item) => (
+              <motion.li
+                key={item}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="py-2"
+              >
+                <ExplodingLink
+                  href={`#${item.toLowerCase().replace(/\s+/g, '-').replace(/[éè]/g, 'e')}`}
+                  className="block text-white hover:text-blue-400 transition-colors duration-300 cursor-pointer px-4"
+                  onClick={closeMobileMenu}
+                >
+                  {item}
+                </ExplodingLink>
+              </motion.li>
+            ))}
+          </ul>
+        </motion.div>
+      )}
     </motion.header>
   );
 };

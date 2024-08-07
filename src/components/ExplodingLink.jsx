@@ -9,12 +9,13 @@ const ExplodingLink = ({ children, href, onClick, className, target, rel }) => {
     setIsExploded(true);
     setTimeout(() => {
       setIsExploded(false);
-      if (onClick) onClick(e);
-      else if (href.startsWith('#')) {
-        const element = document.querySelector(href);
-        if (element) element.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        window.open(href, target || '_self');
+      // Scroll to the section after the explosion effect
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+      if (onClick) {
+        onClick();
       }
     }, 1000);
   };
