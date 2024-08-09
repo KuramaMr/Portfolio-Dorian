@@ -22,7 +22,7 @@ const projects: Project[] = [
     image: "/images/CarteFerid.png",
     link: "https://portfolio-ferid.netlify.app/",
     importance: 6,
-    categories: ["HTML/CSS", "JavaScript", "Node.js"]
+    categories: ["HTML/CSS", "JavaScript", "Node.js", "Tests automatisés"]
   },
   {
     title: "Projet Riding Cities",
