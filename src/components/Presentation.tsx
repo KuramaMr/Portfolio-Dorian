@@ -32,7 +32,7 @@ const Presentation = () => {
   };
 
   return (
-    <section id="à-propos" className="min-h-screen flex items-center justify-center bg-gray-900">
+    <section id="à-propos" className="min-h-screen flex items-center justify-center">
       <motion.div 
         className="container mx-auto px-4"
         variants={containerVariants}

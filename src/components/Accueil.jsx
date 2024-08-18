@@ -39,7 +39,7 @@ const Accueil = () => {
   const buttonText = "Découvrir mon travail";
 
   return (
-    <section id="accueil" className="h-screen flex items-center justify-center bg-gray-900">
+    <section id="accueil" className="h-screen flex items-center justify-center">
       <div className="text-center">
         <motion.h1 
           className="text-6xl font-bold text-white mb-4"

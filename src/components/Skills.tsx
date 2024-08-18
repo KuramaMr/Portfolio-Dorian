@@ -1,7 +1,25 @@
-import { FaReact, FaNodeJs, FaPaintBrush, FaGitAlt, FaDocker } from 'react-icons/fa';
+import { FaReact, FaNodeJs, FaPaintBrush, FaGitAlt, FaDocker, FaHtml5, FaCss3Alt, FaJs } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const skills = [
+  { 
+    name: 'HTML', 
+    icon: FaHtml5, 
+    color: 'text-orange-500',
+    description: "Création de la structure de base des pages web avec un balisage sémantique."
+  },
+  { 
+    name: 'CSS', 
+    icon: FaCss3Alt, 
+    color: 'text-blue-500',
+    description: "Stylisation et mise en page des éléments web pour une présentation visuelle attrayante."
+  },
+  { 
+    name: 'JavaScript', 
+    icon: FaJs, 
+    color: 'text-yellow-400',
+    description: "Programmation côté client pour des interactions dynamiques et des fonctionnalités avancées."
+  },
   { 
     name: 'React', 
     icon: FaReact, 
@@ -36,7 +54,7 @@ const skills = [
 
 const Skills = () => {
   return (
-    <section id="competences" className="min-h-screen flex items-center justify-center bg-gray-900">
+    <section id="competences" className="min-h-screen flex items-center justify-center">
       <div className="container mx-auto px-4">
         <motion.h2 
           className="text-5xl font-bold mb-16 text-center text-white-400"
