@@ -71,7 +71,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
   return (
     <div 
-      className="bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer"
+      className="rounded-lg overflow-hidden shadow-xl cursor-pointer"
       onClick={() => setIsExpanded(!isExpanded)}
     >
       <div className="relative h-48 md:h-64">
@@ -157,7 +157,7 @@ const Projects: React.FC = () => {
   }, []);
 
   return (
-    <section id="projets" className="py-20 bg-gray-900" ref={sectionRef}>
+    <section id="projets" className="py-20" ref={sectionRef}>
       <div className="container mx-auto px-4">
         <motion.h2  
           className="text-4xl font-bold mb-16 text-center text-white-400"

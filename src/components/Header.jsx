@@ -43,9 +43,9 @@ const Header = () => {
   return (
     <motion.header
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-gray-900 shadow-lg' : 'bg-transparent'
+        isScrolled ? ' backdrop-filter backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}
-      initial={{ y: -100, opacity: 0 }}
+      initial={{ y: -100, opacity: 1 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
@@ -90,7 +90,7 @@ const Header = () => {
       </motion.div>
       {isMobileMenuOpen && (
         <motion.div
-          className="md:hidden bg-gray-900 shadow-lg"
+          className="md:hidden shadow-lg"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
