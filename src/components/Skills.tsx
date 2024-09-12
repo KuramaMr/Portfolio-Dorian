@@ -54,7 +54,7 @@ const skills = [
 
 const Skills = () => {
   return (
-    <section id="competences" className="min-h-screen flex items-center justify-center">
+    <section id="competences" className="min-h-screen flex items-center justify-center mt-20">
       <div className="container mx-auto px-4">
         <motion.h2 
           className="text-5xl font-bold mb-16 text-center text-white-400"
