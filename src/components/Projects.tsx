@@ -17,6 +17,14 @@ interface ProjectCardProps {
 
 const projects: Project[] = [
   {
+    title: "Projet Blog Rêve d'Europe",
+    description: "Blog de voyages développé avec HTML, CSS, JavaScript et React, intégrant des animations et une gestion de contenu dynamique.",
+    image: "/images/ReveEurope.png",
+    link: "https://reve-europe.netlify.app",
+    importance: 7,
+    categories: ["HTML/CSS", "JavaScript", "React"]
+  },
+  {
     title: "Projet Portfolio Guelmaoui Ferid",
     description: "Site web responsive développé avec HTML, CSS, JavaScript et Node.js, intégrant gestion d'images, authentification et animations.",
     image: "/images/CarteFerid.png",
