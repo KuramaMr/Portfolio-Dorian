@@ -22,7 +22,7 @@ const projects: Project[] = [
     image: "/images/ReveEurope.png",
     link: "https://reve-europe.netlify.app",
     importance: 7,
-    categories: ["HTML/CSS", "JavaScript", "React"]
+    categories: ["HTML/CSS", "JavaScript", "React", "Tests automatisés"]
   },
   {
     title: "Projet Portfolio Guelmaoui Ferid",
