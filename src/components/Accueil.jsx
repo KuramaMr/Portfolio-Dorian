@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaArrowDown } from 'react-icons/fa';
+import { FaArrowDown, FaGithub } from 'react-icons/fa';
 import { useState } from 'react';
 
 const Accueil = () => {
@@ -37,6 +37,7 @@ const Accueil = () => {
   };
 
   const buttonText = "Découvrir mon travail";
+  const githubUrl = "https://github.com/KuramaMr";
 
   return (
     <section id="accueil" className="h-screen flex items-center justify-center">
@@ -87,6 +88,17 @@ const Accueil = () => {
               transition={{ duration: 0.5 }}
             />
           </motion.button>
+          
+          <motion.div className="mt-4">
+            <motion.button 
+              onClick={() => window.open(githubUrl, "_blank")}
+              className="bg-gray-800 text-white p-3 rounded-full"
+              whileHover={{ scale: 1.1, boxShadow: "0 0 15px rgba(31, 41, 55, 0.5)" }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaGithub className="text-2xl" />
+            </motion.button>
+          </motion.div>
         </motion.div>
       </div>
 
