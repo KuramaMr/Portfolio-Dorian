@@ -17,6 +17,14 @@ interface ProjectCardProps {
 
 const projects: Project[] = [
   {
+    title: "Site web Athletix",
+    description: "Site web développé avec HTML, CSS, JavaScript et React, intégrant des animations et une gestion de contenu dynamique.",
+    image: "/images/Athletix.png",
+    link: "https://siteathletix.netlify.app/",
+    importance: 8,
+    categories: ["HTML/CSS", "JavaScript"]
+  },
+  {
     title: "Projet Blog Rêve d'Europe",
     description: "Blog de voyages développé avec HTML, CSS, JavaScript et React, intégrant des animations et une gestion de contenu dynamique.",
     image: "/images/ReveEurope.png",
@@ -91,7 +99,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         />
       </div>
       <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2 text-blue-300">{project.title}</h3>
+        <h3 className="text-xl font-semibold mb-2 text-white-10">{project.title}</h3>
         <AnimatePresence>
           {isExpanded && (
             <motion.div
